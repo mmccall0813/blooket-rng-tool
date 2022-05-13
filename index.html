@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <style>
+
+        </style>
+    </head>
+        <script>
+            
+            let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
+            
+            function generateData(){
+                const chest1 = document.querySelector("#Chest1");
+                const chest2 = document.querySelector("#Chest2");
+                const chest3 = document.querySelector("#Chest3");
+                const chests = [chest1, chest2, chest3];
+                var vals = [];
+                for(var i = 0; i < 3; i++){
+                    vals.push(chests[i].value);
+                }
+                if(findDuplicates(vals).length > 0){
+                    alert("Duplicate values detected!");
+                    return;
+                }
+                if(vals.indexOf("") != -1){
+                    alert("Empty values detected!");
+                    return;
+                }
+                var data = [{
+                    triggerElement: "[class^='styles__feedbackContainer___'] > div",
+                    numbers: [(1/14 * vals[0]), (1/14 * vals[1]), (1/14 * vals[2])]
+                }]
+                const textarea = document.querySelector("#textarea");
+                textarea.value = JSON.stringify(data);
+            }
+        </script>
+    <select id="Chest1">
+        <option value="" selected>Chest 1</option>
+        <option value=1>+10 Gold</option>
+        <option value=2>+20 Gold</option>
+        <option value=3>+30 Gold</option>
+        <option value=4>+40 Gold</option>
+        <option value=5>+50 Gold</option>
+        <option value=6>+100 Gold</option>
+        <option value=7>Double Gold</option>
+        <option value=8>Triple Gold</option>
+        <option value=9>Lose 25%</option>
+        <option value=10>Lose 50%</option>
+        <option value=11>SWAP</option>
+        <option value=12>Take 10%</option>
+        <option value=13>Take 25%</option>
+        <option value=14>Nothing!</option>
+    </select>
+    <select id="Chest2">
+        <option value="" selected>Chest 2</option>
+        <option value=1>+10 Gold</option>
+        <option value=2>+20 Gold</option>
+        <option value=3>+30 Gold</option>
+        <option value=4>+40 Gold</option>
+        <option value=5>+50 Gold</option>
+        <option value=6>+100 Gold</option>
+        <option value=7>Double Gold</option>
+        <option value=8>Triple Gold</option>
+        <option value=9>Lose 25%</option>
+        <option value=10>Lose 50%</option>
+        <option value=11>SWAP</option>
+        <option value=12>Take 10%</option>
+        <option value=13>Take 25%</option>
+        <option value=14>Nothing!</option>
+    </select>
+    <select id="Chest3">
+        <option value="" selected>Chest 3</option>
+        <option value=1>+10 Gold</option>
+        <option value=2>+20 Gold</option>
+        <option value=3>+30 Gold</option>
+        <option value=4>+40 Gold</option>
+        <option value=5>+50 Gold</option>
+        <option value=6>+100 Gold</option>
+        <option value=7>Double Gold</option>
+        <option value=8>Triple Gold</option>
+        <option value=9>Lose 25%</option>
+        <option value=10>Lose 50%</option>
+        <option value=11>SWAP</option>
+        <option value=12>Take 10%</option>
+        <option value=13>Take 25%</option>
+        <option value=14>Nothing!</option>
+    </select>
+    <br>
+    <button onclick="generateData()">
+        Generate RNG Data
+    </button>
+    <br>
+    <textarea id="textarea">
+        
+    </textarea>
+
+</html>
