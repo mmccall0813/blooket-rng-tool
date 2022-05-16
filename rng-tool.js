@@ -49,16 +49,15 @@
    setInterval( () => {
       codes.forEach( (code) => {
          var triggerElem = document.querySelector(code.triggerElement);
-         var numbers = code.numbers;
+         const numbers = code.numbers;
          var index = 0;
          console.log(code)
          if(triggerElem !== null){
             rngManip.setEnabled(true);
-            rngManip.setSpoofedRandom(numbers.shift());
+            rngManip.setSpoofedRandom(numbers[index++]);
             rngManip.setCallback( () => {
-               if(numbers.length == 0) return rngManip.setEnabled(false);
-               rngManip.setSpoofedRandom(numbers.shift());
-               debugger;
+               if(index == numbers.length) return rngManip.setEnabled(false);
+               rngManip.setSpoofedRandom(numbers[index++]);
             });
             triggerElem.click();
          }

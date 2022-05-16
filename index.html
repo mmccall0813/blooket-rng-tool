@@ -7,8 +7,9 @@
         <script>
             
             let findDuplicates = arr => arr.filter((item, index) => arr.indexOf(item) != index)
-            
+
             function generateData(){
+                let arr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]
                 const chest1 = document.querySelector("#Chest1");
                 const chest2 = document.querySelector("#Chest2");
                 const chest3 = document.querySelector("#Chest3");
@@ -17,17 +18,27 @@
                 for(var i = 0; i < 3; i++){
                     vals.push(chests[i].value);
                 }
-                if(findDuplicates(vals).length > 0){
-                    alert("Duplicate values detected!");
-                    return;
-                }
                 if(vals.indexOf("") != -1){
                     alert("Empty values detected!");
                     return;
                 }
+                if(findDuplicates(vals).length > 0){
+                    alert("Duplicate values detected!");
+                    return;
+                }
+                var numbers = [];
+
+                for(var i = 0; i < 3; i++){
+                    let index1 = arr.indexOf(vals[i]);
+                    arr.splice(index1, 1);
+                    numbers.push(index1);
+                }
+
+                console.log(numbers)
+
                 var data = [{
                     triggerElement: "[class^='styles__feedbackContainer___'] > div",
-                    numbers: [(1/14 * vals[0]), (1/14 * vals[1]), (1/14 * vals[2])]
+                    numbers: [(numbers[0]/14), (numbers[1]/14), (numbers[2]/14)]
                 }]
                 const textarea = document.querySelector("#textarea");
                 textarea.value = JSON.stringify(data);
