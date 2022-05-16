@@ -1,4 +1,4 @@
-( () => { // anon functinon, makes defined variables not go into global scope.
+( () => { // anon function, makes defined variables not go into global scope
     
     class RNGManip {
         #callback;
@@ -31,9 +31,11 @@
     }
     
     const rngManip = new RNGManip();
-    var frame = document.body.appendChild(document.createElement("iframe"))
+    const iframe = document.createElement('iframe');
+    iframe.style.border = "none";
+    var frame = document.body.appendChild(iframe);
     var contentWindow = frame.contentWindow;
-    var codes = contentWindow.prompt("Enter your RNG codes, if you dont have any, get them from the github page, or use the tool.");
+    var codes = contentWindow.prompt("Enter your RNG codes, if you dont have any, get them from the generator on the GitHub page.");
     /*
     Codes Example:
 
@@ -46,12 +48,12 @@
 
     */
    codes = JSON.parse(codes)
+   document.body.removeChild(frame);
    setInterval( () => {
       codes.forEach( (code) => {
          var triggerElem = document.querySelector(code.triggerElement);
          const numbers = code.numbers;
          var index = 0;
-         console.log(code)
          if(triggerElem !== null){
             rngManip.setEnabled(true);
             rngManip.setSpoofedRandom(numbers[index++]);
